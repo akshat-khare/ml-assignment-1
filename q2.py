@@ -29,6 +29,7 @@ with open(sys.argv[2]) as yifile:
 yinp = np.zeros((m,1))
 for x in range(m):
     yinp[x][0]=yi[x]
+# Finding the constants for mathematical calculation
 xtranspose = np.transpose(xinp)
 # print(xtranspose)
 xtx = np.dot(xtranspose, xinp)
@@ -62,6 +63,7 @@ plt.show()
 
 import math
 def lwlr(xarg, tau):
+    # Gives Y corresponding to some x
     w = np.zeros((m,m))
 #     print(w)
     for x in range(m):

@@ -28,6 +28,7 @@ lr=float(sys.argv[3])
 epsilon=pow(10, -12)
 theta=[0.0,0.0]
 def jtheta(theta):
+    # Gives the error corresponding to theta
     temp=float(0)
     for i in range(m):
         temp+=(pow(theta[1]*xi[i]+1.0*theta[0]-yi[i],2)/2.0)
@@ -43,6 +44,7 @@ while(True):
     for i in range(m):
         temp[0]+=(yi[i]-theta[0]*1.0-theta[1]*xi[i])*1.0
         temp[1]+=(yi[i]-theta[0]*1.0-theta[1]*xi[i])*xi[i]
+    # Update Equation
     theta[0] = theta[0]+ lr*temp[0]/(float(m))
     theta[1] = theta[1]+ lr*temp[1]/(float(m))
 #     finjtheta = jtheta(theta)
@@ -54,6 +56,7 @@ while(True):
     theta1list.append(theta[1])
     jthetalist.append(jtheta(theta))
     if(convergingcriteria<epsilon):
+        # Checking if converged or not
 #         print("inijtheta is "+str(inijtheta)+" finjtheta is "+str(finjtheta))
         print("number of iterations are "+str(numiter))
         break

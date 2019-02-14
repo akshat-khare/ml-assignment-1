@@ -37,16 +37,19 @@ theta=np.zeros((3,1))
 for x in range(3):
     theta[x]=float(0)
 def sigmoid(thetaarg, xarg):
+    # Gives g of theta xarg
     temp = 0.0;
     for x in range(3):
         temp+= thetaarg[x]*xarg[x]
     return (1.0/(1+math.exp(-temp)))
 def firstderivativewrtj(j,thetaarg):
+    # Gives firstderivative wrt j
     temp=0.0
     for x in range(m):
         temp+= (yinp[x]-sigmoid(thetaarg, xinp[x]))*xinp[x][j]
     return temp
 def firstderivative(thetaarg):
+    # Give firstderivative
     temp = np.zeros((3,1))
     for x in range(3):
         temp[x] = 0.0
@@ -54,12 +57,14 @@ def firstderivative(thetaarg):
         temp[x] = firstderivativewrtj(x,thetaarg)
     return temp
 def secondderivativewrtkj(k,j,thetaarg):
+    # Gives secondderivative wrt k and j
     temp = 0.0
     for x in range(m):
         tempsigmoid = sigmoid(thetaarg, xinp[x])
         temp+= (tempsigmoid)*(1-tempsigmoid)*(xinp[x][j])*(xinp[x][k])
     return -temp
 def secondderivative(thetaarg):
+    # Gives secondderivative or hassian
     temp = np.zeros((3,3))
     for x in range(3):
         for y in range(3):
@@ -76,11 +81,13 @@ while(True):
     tempsecondinv = np.linalg.inv(tempsecond)
     tempfirst = firstderivative(theta)
     tempchange = np.dot(tempsecondinv, tempfirst)
+    # Update equation
     theta= theta - tempchange
     temp=0.0
     for x in range(3):
         temp+= abs(tempchange[x])
     if(temp<convergencecriteria):
+        # Check for convergence
         break
 print(theta)
 print(numiter)

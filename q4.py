@@ -39,6 +39,7 @@ for x in range(m):
 #find phi
 # print(yinp)
 def findphi():
+    # Find phi
     temp =0.0;
     for x in range(m):
         if(yi[x]==1):
@@ -47,6 +48,7 @@ def findphi():
 # print(findphi())
 phi = findphi()
 def findmu(i):
+    # Find mu
     tempnum=np.zeros((2,1))
     tempdeno=0.0
     for x in range(m):
@@ -58,6 +60,7 @@ def findmu(i):
 #     print(tempdeno)
     return tempnum/float(tempdeno)
 # print(findmu(0))
+# Save mu for fast access
 mu0 = findmu(0)
 mu1 = findmu(1)
 # print(mu0)
@@ -69,6 +72,7 @@ def getfastmu(i):
         return mu1
 
 def findsigmacommon():
+    # Find common assumed covariance
     temp = np.zeros((2,2))
     for x in range(m):
         ultratemp = np.transpose([xinp[x]])-getfastmu(yi[x])
@@ -76,6 +80,7 @@ def findsigmacommon():
     return temp/float(m)
 # print(findsigmacommon())
 def findsigma(i):
+    # Find individual covariance
     tempnum = np.zeros((2,2))
     tempdeno = 0
     for x in range(m):
@@ -92,6 +97,7 @@ def findsigma(i):
 
 
 def gdalinear(xarg):
+    # Find hypothesis function for common covariance case
     tempsigmacommoninv = np.linalg.inv(findsigmacommon())
     tempA = 2*np.dot((np.transpose(mu0)-np.transpose(mu1)),tempsigmacommoninv)
     tempB = math.log(phi/(1-phi)) + (np.dot(np.transpose(mu0), np.dot(tempsigmacommoninv, mu0)))[0][0] - (np.dot(np.transpose(mu1), np.dot(tempsigmacommoninv, mu1)))[0][0]
@@ -109,6 +115,7 @@ def gdalinear(xarg):
 
 
 def gdaquad():
+    # Find hypothesis function parameters for general equation
     tempsigma0 = findsigma(0)
     tempsigma1 = findsigma(1)
     tempsigma0inv = np.linalg.inv(tempsigma0)
@@ -147,10 +154,12 @@ for x in range(m):
 # print(ximax)
 mode = int(sys.argv[3])
 if(mode==0):
+    # Plot linear boundary
     xtest = np.linspace(50,200,100)
     ytest = gdalinear(xtest)
     plt.scatter(xtest, ytest,s=area, c='red', alpha=0.5)
 elif(mode==1):
+    # Plot quadratic boundary
     argd = gdaquad()
     print(argd)
     x = np.linspace(50,200,100)
