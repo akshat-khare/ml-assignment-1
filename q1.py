@@ -121,9 +121,9 @@ Z = f(X, Y)
 fig = plt.figure()
 ax = plt.axes(projection='3d')
 # ax.contour3D(X, Y, Z, 50, cmap='binary')
-ax.set_xlabel('x')
-ax.set_ylabel('y')
-ax.set_zlabel('z');
+ax.set_xlabel('theta0')
+ax.set_ylabel('theta1')
+ax.set_zlabel('jtheta');
 # ax.view_init(60, 35)
 fig
 ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
