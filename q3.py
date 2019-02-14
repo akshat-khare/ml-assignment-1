@@ -69,6 +69,7 @@ def secondderivative(thetaarg):
             temp[x][y] = secondderivativewrtkj(x,y, thetaarg)
     return temp
 numiter=0
+convergencecriteria = pow(10, -7)
 while(True):
     numiter+=1
     tempsecond = secondderivative(theta)
@@ -79,7 +80,7 @@ while(True):
     temp=0.0
     for x in range(3):
         temp+= abs(tempchange[x])
-    if(temp<0.0000001):
+    if(temp<convergencecriteria):
         break
 print(theta)
 print(numiter)
@@ -92,9 +93,9 @@ import matplotlib.pyplot as plt
 area = np.pi*3
 for x in range(m):
     if(abs(yinp[x][0]-1)<0.001):
-        plt.scatter(xinp[x][1], xinp[x][2],s=area, c='orange',alpha=0.5 )
+        plt.scatter(xinp[x][1], xinp[x][2],s=area, c='grey',alpha=0.5, marker='*')
     else:
-        plt.scatter(xinp[x][1], xinp[x][2],s=area, c='blue',alpha=0.5 )
+        plt.scatter(xinp[x][1], xinp[x][2],s=area, c='blue',alpha=0.5, marker='o' )
 # print(max(xinp[:][1]))
 ximin = min(min(xinp[:][1]),min(xinp[:][2]))
 ximax = max(max(xinp[:][1]),max(xinp[:][2]))
@@ -105,7 +106,7 @@ for x in range(len(xtest)):
 plt.scatter(xtest, ytest,s=area, c='red', alpha=0.5)
 
 # plt.scatter(xi, yi, s=area, c='orange', alpha=0.5)
-plt.title('Scatter plot pythonspot.com')
+plt.title('Scatter plot logistic')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()

@@ -51,7 +51,7 @@ for i in range(m):
 plt.plot(xi, z, linestyle='dotted')
 area = np.pi*3
 plt.scatter(xi, yi, s=area, c='orange', alpha=0.5)
-plt.title('Scatter plot pythonspot.com')
+plt.title('Scatter plot linear')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
@@ -85,7 +85,7 @@ for x in range(len(xtest)):
 area = np.pi*3
 plt.scatter(xi, yi, s=area, c='orange', alpha=0.5)
 plt.scatter(xtest, ytest, s=area, c='blue', alpha=0.5)
-plt.title('Scatter plot pythonspot.com')
+plt.title('Scatter plot quadratic')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()

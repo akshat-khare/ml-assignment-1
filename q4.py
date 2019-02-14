@@ -60,6 +60,8 @@ def findmu(i):
 # print(findmu(0))
 mu0 = findmu(0)
 mu1 = findmu(1)
+# print(mu0)
+# print(mu1)
 def getfastmu(i):
     if(i==0):
         return mu0
@@ -82,8 +84,8 @@ def findsigma(i):
             tempnum = tempnum + np.dot(ultratemp, np.transpose(ultratemp))
             tempdeno +=1
     return tempnum/(float(tempdeno))
-# print(findsigma(1))
 # print(findsigma(0))
+# print(findsigma(1))
 
 
 # In[49]:
@@ -129,9 +131,9 @@ import matplotlib.pyplot as plt
 area = np.pi*3
 for x in range(m):
     if(yi[x]==1):
-        plt.scatter(xinp[x][0], xinp[x][1],s=area, c='orange',alpha=0.5 )
+        plt.scatter(xinp[x][0], xinp[x][1],s=area, c='grey',alpha=0.5, marker='*' )
     else:
-        plt.scatter(xinp[x][0], xinp[x][1],s=area, c='blue',alpha=0.5 )
+        plt.scatter(xinp[x][0], xinp[x][1],s=area, c='blue',alpha=0.5, marker='o' )
 # print(max(xinp[:][1]))
 ximin = xi[0][0]
 ximax = xi[0][0]
@@ -147,7 +149,7 @@ mode = int(sys.argv[3])
 if(mode==0):
     xtest = np.linspace(50,200,100)
     ytest = gdalinear(xtest)
-    plt.scatter(xtest, ytest,s=area, c='grey', alpha=0.5)
+    plt.scatter(xtest, ytest,s=area, c='red', alpha=0.5)
 elif(mode==1):
     argd = gdaquad()
     print(argd)
@@ -160,7 +162,7 @@ elif(mode==1):
     plt.contour(x, y ,(a*x**2+b*y**2+c*x*y+d*x+e*y+f),[0], colors='red' )
 
 # plt.scatter(xi, yi, s=area, c='orange', alpha=0.5)
-plt.title('Scatter plot')
+plt.title('Scatter plot of data points and boundary')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
