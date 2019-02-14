@@ -80,8 +80,11 @@ area = np.pi*3
 z=[]
 for i in range(m):
     z.append(float(theta[0]+theta[1]*xi[i]))
-plt.plot(xi, z, linestyle='dotted')
-plt.scatter(xi, yi, s=area, c='orange', alpha=0.5)
+xiori=[]
+for x in range(m):
+    xiori.append(xi[x]*xvarroot+xmean)
+plt.plot(xiori, z, linestyle='dotted')
+plt.scatter(xiori, yi, s=area, c='orange', alpha=0.5)
 plt.title('Scatter plot and hypothesis function')
 plt.xlabel('x')
 plt.ylabel('y')
